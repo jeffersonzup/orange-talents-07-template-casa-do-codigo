@@ -2,6 +2,7 @@ package br.com.zupacademy.jefferson.casadocodigo.controller.data.request;
 
 import br.com.zupacademy.jefferson.casadocodigo.entity.Autor;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -13,6 +14,7 @@ public class AutorRequest {
 
     @NotBlank
     @Email
+    @Column(unique = true)
     private String email;
 
     @NotBlank
@@ -29,6 +31,18 @@ public class AutorRequest {
         this.nome = nome;
         this.email = email;
         this.descricao = descricao;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getDescricao() {
+        return descricao;
     }
 
     public Autor convertRequestToEntity() {
