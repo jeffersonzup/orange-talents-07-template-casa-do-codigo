@@ -45,7 +45,7 @@ public class AutorRequest {
         return descricao;
     }
 
-    public Autor convertRequestToEntity() {
+    public Autor convertRequestToEntity(AutorRequest autorRequest) {
         return new Autor(this.nome, this.email, this.descricao);
     }
 }

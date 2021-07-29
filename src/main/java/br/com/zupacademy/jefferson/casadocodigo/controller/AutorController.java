@@ -30,8 +30,8 @@ public class AutorController {
     @Transactional
     public ResponseEntity salvar(@RequestBody @Valid AutorRequest autorRequest){
         emailValidation.validateExistingEmail(autorRequest.getEmail());
-        Autor autor = autorRequest.convertRequestToEntity();
+        Autor autor = autorRequest.convertRequestToEntity(autorRequest);
         autorRepository.save(autor);
-        return ResponseEntity.ok(autor);
+        return ResponseEntity.ok(autor.toString());
     }
 }
