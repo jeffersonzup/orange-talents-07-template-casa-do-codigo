@@ -1,6 +1,7 @@
 package br.com.zupacademy.jefferson.casadocodigo.controller.data.request;
 
 import br.com.zupacademy.jefferson.casadocodigo.entity.Autor;
+import br.com.zupacademy.jefferson.casadocodigo.validations.UniqueValue;
 
 import javax.persistence.Column;
 import javax.validation.constraints.Email;
@@ -15,6 +16,7 @@ public class AutorRequest {
     @NotBlank
     @Email
     @Column(unique = true)
+    @UniqueValue(domainClass = Autor.class, fieldName = "email")
     private String email;
 
     @NotBlank
