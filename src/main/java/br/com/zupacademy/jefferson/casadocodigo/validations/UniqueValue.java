@@ -14,7 +14,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 public @interface UniqueValue {
 
-    String message() default "{br.com.zupacademy.jefferson.beanvalidation.uniquevalue}";
+    String message() default "Este campo deve conter um valor único";
     Class<?>[] groups() default {};
     Class <? extends Payload>[] payload() default {};
     String fieldName();
