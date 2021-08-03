@@ -46,4 +46,8 @@ public class Autor {
                 ", dataRegistro=" + dataRegistro +
                 '}';
     }
+
+    public String getNome() {
+        return nome;
+    }
 }

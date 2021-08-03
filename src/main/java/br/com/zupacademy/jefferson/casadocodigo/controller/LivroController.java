@@ -1,6 +1,7 @@
 package br.com.zupacademy.jefferson.casadocodigo.controller;
 
 import br.com.zupacademy.jefferson.casadocodigo.controller.data.request.LivroRequest;
+import br.com.zupacademy.jefferson.casadocodigo.controller.data.response.DetalheLivroResponse;
 import br.com.zupacademy.jefferson.casadocodigo.controller.data.response.LivroResponse;
 import br.com.zupacademy.jefferson.casadocodigo.entity.Livro;
 import br.com.zupacademy.jefferson.casadocodigo.repository.AutorRepository;
@@ -13,6 +14,7 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/livros")
@@ -45,5 +47,15 @@ public class LivroController {
             return new ArrayList<>();
         }
         return LivroResponse.converterLivroToLivroResponseList(listaLivros);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DetalheLivroResponse> detalharLivro(@PathVariable Long id){
+        Optional<Livro> livroResponseEntity = livroRepository.findById(id);
+        if (!livroResponseEntity.isPresent()){
+            return ResponseEntity.notFound().build();
+        }
+        Livro livro = livroResponseEntity.get();
+        return ResponseEntity.ok().body(new DetalheLivroResponse(livro));
     }
 }
